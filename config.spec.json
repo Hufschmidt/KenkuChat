@@ -1,0 +1,6 @@
+{
+  "token": "Discord Developer Portal > Application > New Application or Existing Bot Application > Bot > Reset Token > Token",
+  "applicationId": "Discord Developer Portal > Application > New Application or Existing Bot Application > General Information > APPLICATION ID",
+  "serverId": "Discord > User Settings > Advanced > Developer Mode > Enable; Right-Click Your Server > Copy Server ID",
+  "url": "http://127.0.0.1:3333"
+}
