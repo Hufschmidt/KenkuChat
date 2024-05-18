@@ -9,7 +9,7 @@
     "lint": "npm run lint-ts; npm run lint-md",
     "lint-ts": "eslint src --ext ts",
     "lint-md": "remark --quiet --no-stdout --frail .",
-    "start": "node ./dist/src/",
+    "start": "node --no-warnings=ExperimentalWarning ./dist/src/",
     "start-debug": "node --inspect ./dist/"
   },
   "type": "module",
