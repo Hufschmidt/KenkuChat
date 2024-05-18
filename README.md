@@ -51,6 +51,8 @@ This will start a local debugger instance (*see command output*) that can be con
 like [Chromium](https://www.chromium.org/Home) via the DevTools by navigating to <chrome://inspect/#devices>.
 
 ## Generating Discord Bot (WIP)
+This project requires some configuration that is loaded from a `config.json` file in the same directory, see `config.spec.json` for an example.
+
 - <https://discord.com/developers/applications>
 - New Application
 - To join Discord Server:
@@ -75,6 +77,15 @@ like [Chromium](https://www.chromium.org/Home) via the DevTools by navigating to
   - Right-Click Your Server
   - Copy Server ID
   - Store under config.json "serverId" key
+
+### First startup (WIP)
+For the first startup, the bot needs to register the commands with your discord server,
+this is currently not automated and must be done at least once, or any time the list of commands changes.
+
+To do this, start the bot with the `--update` flag, eg.:
+```bash
+npm run start -- --update
+```
 
 ## Supported Commands (WIP)
 Name of commands will definitely change, for now we got:
