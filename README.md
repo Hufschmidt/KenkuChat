@@ -51,7 +51,6 @@ This will start a local debugger instance (*see command output*) that can be con
 like [Chromium](https://www.chromium.org/Home) via the DevTools by navigating to <chrome://inspect/#devices>.
 
 ## Generating Discord Bot (WIP)
-
 - <https://discord.com/developers/applications>
 - New Application
 - To join Discord Server:
@@ -76,3 +75,10 @@ like [Chromium](https://www.chromium.org/Home) via the DevTools by navigating to
   - Right-Click Your Server
   - Copy Server ID
   - Store under config.json "serverId" key
+
+## Supported Commands (WIP)
+Name of commands will definitely change, for now we got:
+- `/soundboards` - Gives a list of all soundboards (without included sounds for previty)
+- `/sounds <name or id of soundboard>` - Gives a list of all sounds inside given soundboard
+- `/sound <play|stop> <name or id of sound-track>` - Play or stop sound-track with given name or id
+- `/status` - Shows information about currently playing soundboard sounds
