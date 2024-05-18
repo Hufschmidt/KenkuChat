@@ -3,3 +3,6 @@
 
 # Ignore generated files
 /dist
+
+# Ingnore configuration file
+config.json
