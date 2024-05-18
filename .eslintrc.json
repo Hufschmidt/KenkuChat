@@ -1,0 +1,38 @@
+{
+	"extends": [
+    "airbnb-base",
+    "airbnb-typescript/base"
+  ],
+	"env": {
+		"node": true,
+		"es6": true
+	},
+  "ignorePatterns": [
+    "node_modules/",
+    "dist/"
+  ],
+  "parser": "@typescript-eslint/parser",
+	"parserOptions": {
+		"ecmaVersion": 2022,
+    "ecmaFeatures": {
+      "modules": true
+    },
+    "project": "./tsconfig.json",
+    "sourceType": "module"
+	},
+  "plugins": [
+    "@typescript-eslint"
+  ],
+	"rules": {
+
+	},
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "paths": ["./src"],
+        "extensions": [".ts"]
+      }
+    }
+  }
+
+}

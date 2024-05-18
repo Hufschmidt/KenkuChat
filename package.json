@@ -1,0 +1,52 @@
+{
+  "name": "kenkuchat",
+  "version": "0.1.0",
+  "description": "Control KenkuFM using discord chat commands via custom bot.",
+  "main": "dist/src/index.js",
+  "scripts": {
+    "build": "tsc",
+    "doc": "typedoc ./src/",
+    "lint": "npm run lint-ts; npm run lint-md",
+    "lint-ts": "eslint src --ext ts",
+    "lint-md": "remark --quiet --no-stdout --frail .",
+    "start": "node ./dist/src/",
+    "start-debug": "node --inspect ./dist/"
+  },
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Hufschmidt/KenkuChat.git"
+  },
+  "keywords": [
+    "KenkuFM",
+    "Music",
+    "Discord",
+    "Bot",
+    "RemoteControl"
+  ],
+  "author": "Thomas Hufschmidt",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/Hufschmidt/KenkuChat/issues"
+  },
+  "homepage": "https://github.com/Hufschmidt/KenkuChat#readme",
+  "dependencies": {
+    "discord.js": "^14.15.2",
+    "yargs": "^17.7.2"
+  },
+  "devDependencies": {
+    "@types/yargs": "^17.0.32",
+    "@typescript-eslint/eslint-plugin": "^7.9.0",
+    "@typescript-eslint/parser": "^7.9.0",
+    "eslint": "^8.57.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-airbnb-typescript": "^18.0.0",
+    "eslint-plugin-import": "^2.29.1",
+    "remark-lint": "^10.0.0",
+    "remark-preset-lint-consistent": "^6.0.0",
+    "remark-preset-lint-recommended": "^7.0.0",
+    "typedoc": "^0.25.13",
+    "typedoc-plugin-missing-exports": "^2.2.0",
+    "typescript": "^5.4.5"
+  }
+}

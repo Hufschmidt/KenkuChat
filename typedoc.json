@@ -1,0 +1,8 @@
+{
+  "entryPointStrategy": "expand",
+  "excludeExternals": true,
+  "includeVersion": true,
+  "name": "KenkuChat Documentation",
+  "out": "./dist/doc/",
+  "plugin": ["typedoc-plugin-missing-exports"]
+}
