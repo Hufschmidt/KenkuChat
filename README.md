@@ -49,3 +49,30 @@ npm run start-debug
 
 This will start a local debugger instance (*see command output*) that can be connected to with tools
 like [Chromium](https://www.chromium.org/Home) via the DevTools by navigating to <chrome://inspect/#devices>.
+
+## Generating Discord Bot (WIP)
+
+- <https://discord.com/developers/applications>
+- New Application
+- To join Discord Server:
+  - OAuth2
+  - Enable: bot, application.commands
+  - Copy "Generated URL"
+  - Open in Browser an let Bot join discord
+- To get required bot token
+  - Bot
+  - Reset Token
+  - Store under config.json "token" key
+- To get required application key
+  - General Information
+  - Copy APPLICATION ID
+  - Store under config.json "applicationId" key
+- To get required server id
+  - Open Discord
+  - User Settings
+  - Advanced
+  - Enable: Developer Mode
+  - Escape / Close
+  - Right-Click Your Server
+  - Copy Server ID
+  - Store under config.json "serverId" key
