@@ -6,7 +6,7 @@ Control KenkuFM using discord chat commands via custom bot.
 This software is written in [Typescript](https://www.typescriptlang.org) and transpiled to Javascript (*ES2022*) for execution with [NodeJS](https://nodejs.org).
 
 * Download and install [NodeJS & NPM](https://nodejs.org) **16.0.0**<sup>\[1\]</sup> or above for your OS
-* Install<sup>\[2\]</sup> all requirements from `package.json` with:
+* Install all requirements from `package.json` with:
 
   ```bash
   npm install
@@ -14,8 +14,6 @@ This software is written in [Typescript](https://www.typescriptlang.org) and tra
 
 **\[1\]:** If you are using linux and your OS does not come with the requried version of NodeJS one can install upstream versions via NodeSource, eg.
 <https://github.com/nodesource/distributions>
-
-**\[2\]:** When installing behind a proxy, use cli parameter `--proxy http://www-proxy2.uni-marburg.de:3128` together with above `npm` command.
 
 ## Running ##
 
