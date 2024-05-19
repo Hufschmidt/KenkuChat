@@ -34,11 +34,14 @@
     "discord.js": "^14.15.2",
     "fuse.js": "^7.0.0",
     "ky": "^1.2.4",
+    "moment": "^2.30.1",
+    "moment-duration-format": "^2.3.2",
     "pino": "^9.1.0",
     "pino-pretty": "^11.0.0",
     "yargs": "^17.7.2"
   },
   "devDependencies": {
+    "@types/moment-duration-format": "^2.2.6",
     "@types/yargs": "^17.0.32",
     "@typescript-eslint/eslint-plugin": "^7.9.0",
     "@typescript-eslint/parser": "^7.9.0",
