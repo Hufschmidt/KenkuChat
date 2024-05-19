@@ -19,6 +19,31 @@ Ensure that the project has been [build](#development) first, afterwards the dis
 npm run start
 ```
 
+### Passing Arguments ###
+The discord bot takes arguments either from the command line, eg.
+```bash
+npm run start -- --help
+```
+
+Or alternatively by using a json config file. By default it will read `config.json` inside this directory.
+This can be changed by passing the `--config` argument, eg.
+```bash
+npm run start -- --config <path-to-config-file>
+```
+
+## Configuration ##
+The discord bot supports the following configuration arguments, some of them are required as noted below:
+- **applicationId**: (*Required*) The application identifier of the bot, used to register commands. (See [Setting Up](#Setting-Up) section)
+- **config**: (*Optional*) Path to the configuration file (json format) to load arguments values from. (Default: `./config.json`)
+- **prefix**: (*Optional*) Prefix used for all KenkuFM chat-commands registered with the server. (Default: kfm)
+- **logging**: (*Optional*) Current logging level to be used, increase to debug for getting more output. (Default: info)
+- **register**: (*Optional*) If enabled, the bot will register its slash-commands with discord. Note: This should only be done once! (Default: false)
+- **serverId**: (*Optional*) The server identifier when updating slash-commands on a single server only. Otherwise slash-commands are updated globally.
+- **token**: (*Required*) The oAuth2 token used by the bot for authentication.
+- **url**: (*Optional*) URL under which the KenkuFM remote-control API is available, see KenkuFM > Settings > Remote. (Default: http://127.0.0.1:3333)
+
+## Setting Up
+**Work In Progress**
 
 ## Development ##
 The original source-code (*see `./src` directory*) is written in Typescript and needs to be transpiled to Javascript
