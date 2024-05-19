@@ -1,5 +1,5 @@
 // Import code from external modules
-import ky, { HTTPError, TimeoutError } from 'ky';
+import ky from 'ky';
 
 // Import code from internal modules
 import { Config } from '../Config/Config.js';
@@ -8,6 +8,7 @@ import { LoggerFactory } from '../Logger/Factory.js';
 // Import types from internal modules
 import type { KenkuId, KenkuGetPlaylists, KenkuGetTrackState } from './Interfaces.js';
 import type { LoggerInterface } from '../Logger/Interfaces.js';
+import { KenkuError } from '../Errors/KenkuError.js';
 
 /**
  * Implements the playlist related KenkuFM remote-control api
@@ -48,14 +49,7 @@ class PlaylistService {
       this.logger.debug({ json }, 'Got list of playlists and tracks.');
       return json;
     } catch (error) {
-      // Ensure that errors are seen, but also are passed down
-      if (error instanceof HTTPError) {
-        this.logger.error({ error }, `Got exception when trying to fetch list of all playlists and tracks: ${error.message}`);
-      } else if (error instanceof TimeoutError) {
-        this.logger.error({ error }, 'Got timeout when trying to fetch list of all playlists and tracks.');
-      } else {
-        this.logger.error({ error }, 'Got unexpected exception when trying to fetch list of all playlists and tracks.');
-      }
+      this.logger.error({ error }, KenkuError.handleException(error, 'fetch list of all playlists and tracks'));
       throw error;
     }
   }
@@ -80,14 +74,7 @@ class PlaylistService {
       this.logger.debug({ json }, 'Got playlist or track playing answer.');
       return json;
     } catch (error) {
-      // Ensure that errors are seen, but also are passed down
-      if (error instanceof HTTPError) {
-        this.logger.error({ error }, `Got exception when trying to play playlist or track: ${error.message}`);
-      } else if (error instanceof TimeoutError) {
-        this.logger.error({ error }, 'Got timeout when trying to play playlist or track.');
-      } else {
-        this.logger.error({ error }, 'Got unexpected exception when trying to play playlist or track.');
-      }
+      this.logger.error({ error }, KenkuError.handleException(error, 'play playlist or track'));
       throw error;
     }
   }
@@ -107,14 +94,7 @@ class PlaylistService {
       // Log information and pass response
       this.logger.debug('Got playlist or track pause answer.');
     } catch (error) {
-      // Ensure that errors are seen, but also are passed down
-      if (error instanceof HTTPError) {
-        this.logger.error({ error }, `Got exception when trying to pause playlist or track: ${error.message}`);
-      } else if (error instanceof TimeoutError) {
-        this.logger.error({ error }, 'Got timeout when trying to pause playlist or track.');
-      } else {
-        this.logger.error({ error }, 'Got unexpected exception when trying to pause playlist or track.');
-      }
+      this.logger.error({ error }, KenkuError.handleException(error, 'pause playlist or track'));
       throw error;
     }
   }
@@ -134,14 +114,7 @@ class PlaylistService {
       // Log information and pass response
       this.logger.debug('Got playlist or track resume answer.');
     } catch (error) {
-      // Ensure that errors are seen, but also are passed down
-      if (error instanceof HTTPError) {
-        this.logger.error({ error }, `Got exception when trying to resume playlist or track: ${error.message}`);
-      } else if (error instanceof TimeoutError) {
-        this.logger.error({ error }, 'Got timeout when trying to resume playlist or track.');
-      } else {
-        this.logger.error({ error }, 'Got unexpected exception when trying to resume playlist or track.');
-      }
+      this.logger.error({ error }, KenkuError.handleException(error, 'resume playlist or track'));
       throw error;
     }
   }
@@ -161,14 +134,7 @@ class PlaylistService {
       // Log information and pass response
       this.logger.debug('Got next track answer.');
     } catch (error) {
-      // Ensure that errors are seen, but also are passed down
-      if (error instanceof HTTPError) {
-        this.logger.error({ error }, `Got exception when trying to play next track in playlist: ${error.message}`);
-      } else if (error instanceof TimeoutError) {
-        this.logger.error({ error }, 'Got timeout when trying to play next track in playlist.');
-      } else {
-        this.logger.error({ error }, 'Got unexpected exception when trying to play next track in playlist.');
-      }
+      this.logger.error({ error }, KenkuError.handleException(error, 'play next track in playlist'));
       throw error;
     }
   }
@@ -188,14 +154,7 @@ class PlaylistService {
       // Log information and pass response
       this.logger.debug('Got previous track answer.');
     } catch (error) {
-      // Ensure that errors are seen, but also are passed down
-      if (error instanceof HTTPError) {
-        this.logger.error({ error }, `Got exception when trying to play previous track in playlist: ${error.message}`);
-      } else if (error instanceof TimeoutError) {
-        this.logger.error({ error }, 'Got timeout when trying to play previous track in playlist.');
-      } else {
-        this.logger.error({ error }, 'Got unexpected exception when trying to play previous track in playlist.');
-      }
+      this.logger.error({ error }, KenkuError.handleException(error, 'play previous track in playlist'));
       throw error;
     }
   }
@@ -219,14 +178,7 @@ class PlaylistService {
       this.logger.debug({ json }, 'Got playlist state answer.');
       return json;
     } catch (error) {
-      // Ensure that errors are seen, but also are passed down
-      if (error instanceof HTTPError) {
-        this.logger.error({ error }, `Got exception when trying to fetch playlist state: ${error.message}`);
-      } else if (error instanceof TimeoutError) {
-        this.logger.error({ error }, 'Got timeout when trying  fetch playlist state.');
-      } else {
-        this.logger.error({ error }, 'Got unexpected exception when trying to fetch playlist state.');
-      }
+      this.logger.error({ error }, KenkuError.handleException(error, 'fetch soundboard state'));
       throw error;
     }
   }

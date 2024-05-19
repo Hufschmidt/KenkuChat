@@ -62,6 +62,21 @@ interface KenkuGetPlaylists {
   tracks: KenkuTracks[],
 }
 
+/** Content of a State > Track entry as returned by KenkuFM remote-control API */
+interface KenkuTrackState {
+  url: string,
+  title: string,
+  id: string,
+  duration: number,
+  progress: number,
+}
+
+/** Content of a State > Playlist entry as returned by KenkuFM remote-control API */
+interface KenkuPlaylistState {
+  id: string,
+  title: string,
+}
+
 /** Content of a Get:/Playlist/Playback KenkuFM remote-control API response */
 interface KenkuGetTrackState {
   playing: boolean,
@@ -69,17 +84,8 @@ interface KenkuGetTrackState {
   muted: boolean,
   shuffle: boolean,
   repeat: string,
-  track: {
-    url: string,
-    title: string,
-    id: string,
-    duration: number,
-    progress: number,
-  },
-  playlist: {
-    id: string,
-    title: string,
-  }
+  track?: KenkuTrackState,
+  playlist?: KenkuPlaylistState
 }
 
 /** Content of a Put:/Soundboard/Play or Put:/Soundboard/Stop KenkuFM remote-control API response */
@@ -97,6 +103,8 @@ export {
   type KenkuPlaylist,
   type KenkuTracks,
   type KenkuGetPlaylists,
+  type KenkuTrackState,
+  type KenkuPlaylistState,
   type KenkuGetTrackState,
   type KenkuId,
 };

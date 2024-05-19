@@ -1,6 +1,5 @@
 /**
- * Custom error class to be thrown when
- * requested element does not exist.
+ * Custom error class to be thrown when requested element does not exist.
  */
 class DoesNotExistError extends Error {
   /**

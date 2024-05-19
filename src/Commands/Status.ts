@@ -1,6 +1,7 @@
 // Import code from external modules
 import { SlashCommandBuilder, SlashCommandSubcommandsOnlyBuilder, italic } from 'discord.js';
-import { HTTPError, TimeoutError } from 'ky';
+import moment from 'moment';
+import momentDurationFormat from 'moment-duration-format';
 
 // Import types from external modules
 import type { ChatInputCommandInteraction } from 'discord.js';
@@ -13,6 +14,10 @@ import { LoggerFactory } from '../Logger/Factory.js';
 // Import types from internal modules
 import type { SlashCommandInterface } from './Interfaces.js';
 import type { LoggerInterface } from '../Logger/Interfaces.js';
+import { KenkuError } from '../Errors/KenkuError.js';
+
+// Apply duration-format to moment instance
+momentDurationFormat(<any> moment);
 
 /**
  * Implements the discord commands related to /kfm-status *
@@ -74,30 +79,26 @@ class StatusCommand implements SlashCommandInterface {
       const playlist = await this.playlist.getState();
       const soundboard = await this.soundboard.getState();
 
-      // Build output information
-      const trackInfo = [
-        `- **Title**: ${italic(playlist.track.title)}`,
-        `- **Playlist**: ${italic(playlist.playlist.title)}`,
-        `- **Progress**: ${Math.round(playlist.track.progress)} / ${Math.round(playlist.track.duration)}`,
-      ].join('\n');
-      const soundInfo = soundboard.sounds.map((sound) => {
-        return [
-          `- **Title**: ${italic(sound.title)}`,
-          `- **Progress**: ${Math.round(sound.progress)} / ${Math.round(sound.duration)}`,
-        ].join('\n');
-      }).join('Sound-Effect:\n');
+      const trackInfo = (playlist.track && playlist.playlist)
+        ? `Currently ${(playlist.playing) ? 'playing' : 'paused'} track ${italic(playlist.track.title)} from playlist ${italic(playlist.playlist.title)} (Progress: ${moment.duration(playlist.track.progress, 'seconds').format()} / ${moment.duration(playlist.track.duration, 'seconds').format()})`
+        : 'No playlist or track is currently playing.';
+
+      const soundList = soundboard.sounds.map((sound) => {
+        return `- ${italic(sound.title)} (Progress: ${moment.duration(sound.progress, 'seconds').format()} / ${moment.duration(sound.duration, 'seconds').format()})`;
+      });
+      const soundInfo = (soundboard.sounds.length > 0)
+        ? `Currently playing sound-effects:\n${soundList.join('\n')}`
+        : 'Currently not playing any soundboard or sound-effect.';
 
       // Output status information
-      await interaction.editReply(`Currently playing following:\n${trackInfo}\n${soundInfo}`);
+      await interaction.editReply(`${trackInfo}\n${soundInfo}`);
     } catch (error) {
       // Log error to console
       this.logger.error({ error }, `Got unexpected exception when executing command in ${this.constructor.name}.`);
 
       // Send information to discord
-      if (error instanceof HTTPError) {
-        await interaction.editReply('**Error**: KenkuFM remote-control API triggered an HTTP exception, see KenkuChat logs!');
-      } else if (error instanceof TimeoutError) {
-        await interaction.editReply('**Error**: KenkuFM remote-control API timed out!');
+      if (KenkuError.isUnavailableException(error) || KenkuError.isTimeout(error)) {
+        await interaction.editReply('**Warning**: Cannot talk to KenkuFM remote-control api, see KenkuChat logs!');
       } else {
         await interaction.editReply('**Error**: Caught an unknown exception, see KenkuChat logs!');
       }

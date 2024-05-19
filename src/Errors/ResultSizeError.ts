@@ -1,6 +1,5 @@
 /**
- * Custom error class to be thrown when
- * not expecting to get result of given size.
+ * Custom error class to be thrown when not expecting to get result of given size.
  */
 class ResultSizeError extends Error {
   /** Actuaky size of output */
