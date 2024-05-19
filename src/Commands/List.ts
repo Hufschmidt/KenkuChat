@@ -7,13 +7,14 @@ import { PlaylistService, SoundboardService } from '../KenkuAPI/index.js';
 import { LoggerFactory } from '../Logger/Factory.js';
 
 // Import types from internal modules
+import type { SlashCommandInterface } from './Interfaces.js';
 import type { LoggerInterface } from '../Logger/Interfaces.js';
 
 /**
  * Implements the discord commands related to /kfm-list *
  * Implements commands as well as helpers for working with KenkuFM and discord.
  */
-class ListCommand {
+class ListCommand implements SlashCommandInterface {
   /** Stores a reference for the config parser */
   protected config: Config;
 
@@ -42,9 +43,9 @@ class ListCommand {
    * for building the command managed by this class.
    * @returns An SlashCommandBuilder instance representing this slash-command
    */
-  public getCommand(): SlashCommandSubcommandsOnlyBuilder {
+  public getCommandBuilder(): SlashCommandSubcommandsOnlyBuilder {
     return new SlashCommandBuilder()
-      .setName(`${this.config.getArgument('prefix')}-list`)
+      .setName(this.getCommand())
       .setDescription('List the content of playlists, tracks, soundboards or sound-effects.')
       .addSubcommand((subcommand) => {
         return subcommand
@@ -76,6 +77,14 @@ class ListCommand {
               .setDescription('The title or unique-identifier of the soundboard to show sound-effects for.');
         });
       });
+  }
+
+  /**
+   * Gets the comand name used but interaction lookup.
+   * @returns The command string that is registered
+   */
+  public getCommand(): string {
+    return `${this.config.getArgument('prefix')}-list`;
   }
 
   /**

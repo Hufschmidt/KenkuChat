@@ -6,12 +6,20 @@ import type { Argv } from 'yargs';
 
 /** List of arguments implemented by Config class. */
 interface Arguments {
+  /** The application identifier of the bot, used to register commands. */
+  applicationId: string,
   /** Name of configuration file (json format) to load arguments values from. */
   config: string,
   /** Prefix used for all KenkuFM chat-commands registered with the server. */
   prefix: string,
   /** Current logging level to be used. */
   logging: pino.Level,
+  /** If enabled, the bot will register its slash-commands with discord. */
+  register?: boolean,
+  /** The (optional) server identifier when updating slash-commans on a single server only. */
+  serverId?: string,
+  /** The oAuth2 token used by the bot for authentication. */
+  token: string,
   /** URL under which the KenkuFM remote-control API is available. */
   url: string,
   /** Wether to print version and exit. */

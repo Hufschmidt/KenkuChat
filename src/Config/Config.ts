@@ -41,7 +41,7 @@ class Config {
       describe: 'Global log-level of application.',
       nargs: 1,
       type: 'string',
-      choices: Object.keys(pino.levels.labels),
+      choices: Object.keys(pino.levels.values),
       default: 'info',
       demandOption: true,
       global: true,
@@ -68,6 +68,43 @@ class Config {
       default: 'kfm',
       demandOption: true,
       global: true,
+    });
+
+    // Add --token argument
+    this.parser.option('token', {
+      describe: 'The oAuth2 token used by the bot for authentication.',
+      nargs: 1,
+      type: 'string',
+      demandOption: true,
+      global: true,
+    });
+
+    // Add --application-id argument
+    this.parser.option('applicationId', {
+      describe: 'The application identifier of the bot, used to register commands.',
+      nargs: 1,
+      type: 'string',
+      demandOption: true,
+      global: true,
+      coerce: (value: number | string): string => { return (typeof value === 'string') ? value : value.toString(); },
+    });
+
+    // Add --server-id argument
+    this.parser.option('serverId', {
+      describe: 'The (optional) server identifier when updating slash-commans on a single server only.',
+      nargs: 1,
+      type: 'string',
+      demandOption: true,
+      global: true,
+      coerce: (value: number | string): string => { return (typeof value === 'string') ? value : value.toString(); },
+    });
+
+    // Add --register option (default: false)
+    this.parser.option('register', {
+      describe: 'If enabled, the bot will register its slash-commands with discord.',
+      type: 'boolean',
+      boolean: true,
+      default: false,
     });
 
     // Parse all arguments

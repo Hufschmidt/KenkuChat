@@ -1,6 +1,6 @@
 // Import code from external modules
 import pino from 'pino/pino.js';
-import pretty from 'pino-pretty';
+import pretty from 'pino-pretty/index.js';
 
 // Import code from internal modules
 import { Config } from '../Config/Config.js';
@@ -19,10 +19,7 @@ const LoggerFactory = (className: string): LoggerInterface => {
   const level = config.getArgument('logging');
 
   // Create new pretty destination
-  const destination = pretty.PinoPretty(<any> {
-    colorize: true,
-    useOnlyCustomProps: true,
-  });
+  const destination = pretty.default({ colorize: true });
 
   // Create new logger instance with preset configuration
   return pino.pino({

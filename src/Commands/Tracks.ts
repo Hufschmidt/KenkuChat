@@ -7,13 +7,14 @@ import { PlaylistService } from '../KenkuAPI/index.js';
 import { LoggerFactory } from '../Logger/Factory.js';
 
 // Import types from internal modules
+import type { SlashCommandInterface } from './Interfaces.js';
 import type { LoggerInterface } from '../Logger/Interfaces.js';
 
 /**
  * Implements the discord commands related to /kfm-tracks *
  * Implements commands as well as helpers for working with KenkuFM and discord.
  */
-class TracksCommand {
+class TracksCommand implements SlashCommandInterface {
   /** Stores a reference for the config parser */
   protected config: Config;
 
@@ -38,9 +39,9 @@ class TracksCommand {
    * for building the command managed by this class.
    * @returns An SlashCommandBuilder instance representing this slash-command
    */
-  public getCommand(): SlashCommandSubcommandsOnlyBuilder {
+  public getCommandBuilder(): SlashCommandSubcommandsOnlyBuilder {
     return new SlashCommandBuilder()
-      .setName(`${this.config.getArgument('prefix')}-tracks`)
+      .setName(this.getCommand())
       .setDescription('Do something related to playlists or tracks.')
       .addSubcommand((subcommand) => {
         return subcommand
@@ -82,6 +83,14 @@ class TracksCommand {
           .setName('status')
           .setDescription('Returns the current playback status of the active playlist or track.');
       });
+  }
+
+  /**
+   * Gets the comand name used but interaction lookup.
+   * @returns The command string that is registered
+   */
+  public getCommand(): string {
+    return `${this.config.getArgument('prefix')}-tracks`;
   }
 
   /**

@@ -7,13 +7,14 @@ import { SoundboardService } from '../KenkuAPI/index.js';
 import { LoggerFactory } from '../Logger/Factory.js';
 
 // Import types from internal modules
+import type { SlashCommandInterface } from './Interfaces.js';
 import type { LoggerInterface } from '../Logger/Interfaces.js';
 
 /**
  * Implements the discord commands related to /kfm-soundeffects *
  * Implements commands as well as helpers for working with KenkuFM and discord.
  */
-class SoundEffectsCommand {
+class SoundEffectsCommand implements SlashCommandInterface {
   /** Stores a reference for the config parser */
   protected config: Config;
 
@@ -38,9 +39,9 @@ class SoundEffectsCommand {
    * for building the command managed by this class.
    * @returns An SlashCommandBuilder instance representing this slash-command
    */
-  public getCommand(): SlashCommandSubcommandsOnlyBuilder {
+  public getCommandBuilder(): SlashCommandSubcommandsOnlyBuilder {
     return new SlashCommandBuilder()
-      .setName(`${this.config.getArgument('prefix')}-sounds`)
+      .setName(this.getCommand())
       .setDescription('Do something related to soundboards and sound-effects.')
       .addSubcommand((subcommand) => {
         return subcommand
@@ -67,6 +68,14 @@ class SoundEffectsCommand {
           .setName('status')
           .setDescription('Returns the current playback status of any active soundboard or sound-effect.');
       });
+  }
+
+  /**
+   * Gets the comand name used but interaction lookup.
+   * @returns The command string that is registered
+   */
+  public getCommand(): string {
+    return `${this.config.getArgument('prefix')}-sounds`;
   }
 
   /**
