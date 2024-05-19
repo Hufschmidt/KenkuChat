@@ -37,4 +37,4 @@ type ParserInterface = Argv<Arguments>;
 export {
   type Arguments,
   type ParserInterface,
-}
+};

@@ -71,7 +71,7 @@ class PlayCommand implements SlashCommandInterface {
     await interaction.deferReply();
 
     // WIP
-    console.log(interaction);
+    this.logger.info(interaction);
     await interaction.editReply('This is Work-In-Progress!');
   }
 }
@@ -79,4 +79,4 @@ class PlayCommand implements SlashCommandInterface {
 // Export content as module
 export {
   PlayCommand,
-}
+};

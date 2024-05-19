@@ -11,4 +11,4 @@ type LoggerInterface = pino.Logger<Levels>;
 export {
   type Levels,
   type LoggerInterface,
-}
+};

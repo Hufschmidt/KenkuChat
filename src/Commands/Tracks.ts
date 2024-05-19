@@ -51,7 +51,7 @@ class TracksCommand implements SlashCommandInterface {
             return option
               .setName('title')
               .setDescription('The title or unique-identifier of the playlist or track to play');
-        });
+          });
       })
       .addSubcommand((subcommand) => {
         return subcommand
@@ -102,7 +102,7 @@ class TracksCommand implements SlashCommandInterface {
     await interaction.deferReply();
 
     // WIP
-    console.log(interaction);
+    this.logger.info(interaction);
     await interaction.editReply('This is Work-In-Progress!');
   }
 }
@@ -110,4 +110,4 @@ class TracksCommand implements SlashCommandInterface {
 // Export content as module
 export {
   TracksCommand,
-}
+};

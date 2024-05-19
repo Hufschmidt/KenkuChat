@@ -65,7 +65,7 @@ class ListCommand implements SlashCommandInterface {
             return option
               .setName('title')
               .setDescription('The title or unique-identifier of the playlist to show tracks for.');
-        });
+          });
       })
       .addSubcommand((subcommand) => {
         return subcommand
@@ -75,7 +75,7 @@ class ListCommand implements SlashCommandInterface {
             return option
               .setName('title')
               .setDescription('The title or unique-identifier of the soundboard to show sound-effects for.');
-        });
+          });
       });
   }
 
@@ -96,7 +96,7 @@ class ListCommand implements SlashCommandInterface {
     await interaction.deferReply();
 
     // WIP
-    console.log(interaction);
+    this.logger.info(interaction);
     await interaction.editReply('This is Work-In-Progress!');
   }
 }
@@ -104,4 +104,4 @@ class ListCommand implements SlashCommandInterface {
 // Export content as module
 export {
   ListCommand,
-}
+};

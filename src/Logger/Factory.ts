@@ -24,15 +24,15 @@ const LoggerFactory = (className: string): LoggerInterface => {
   // Create new logger instance with preset configuration
   return pino.pino({
     name: className,
-    level: level,
+    level,
     errorKey: 'error',
     serializers: {
       error: (input: Error) => { return { type: input.name, message: input.message }; },
     },
   }, destination);
-}
+};
 
 // Export content as module
 export {
   LoggerFactory,
-}
+};

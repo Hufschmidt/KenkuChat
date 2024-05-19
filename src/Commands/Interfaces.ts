@@ -28,4 +28,4 @@ interface SlashCommandInterface {
 // Export content as module
 export {
   type SlashCommandInterface,
-}
+};

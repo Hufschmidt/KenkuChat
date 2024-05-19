@@ -20,4 +20,4 @@ type UpdateCommandResponse = Array<UpdateCommandEntry>;
 export {
   type UpdateCommandEntry,
   type UpdateCommandResponse,
-}
+};

@@ -1,6 +1,5 @@
 // Import code from external modules
-import { HTTPError, TimeoutError } from 'ky';
-import ky from 'ky';
+import ky, { HTTPError, TimeoutError } from 'ky';
 
 // Import code from internal modules
 import { Config } from '../Config/Config.js';
@@ -50,9 +49,13 @@ class SoundboardService {
       return json;
     } catch (error) {
       // Ensure that errors are seen, but also are passed down
-      if (error instanceof HTTPError) { this.logger.error({ error }, `Got exception when trying to fetch list of all soundboards and sound-effects: ${error.message}`); }
-      else if (error instanceof TimeoutError) { this.logger.error({ error }, 'Got timeout when trying to fetch list of all soundboards and sound-effects.'); }
-      else {  this.logger.error({ error }, `Got unexpected exception when trying to fetch list of all soundboards and sound-effects.`); }
+      if (error instanceof HTTPError) {
+        this.logger.error({ error }, `Got exception when trying to fetch list of all soundboards and sound-effects: ${error.message}`);
+      } else if (error instanceof TimeoutError) {
+        this.logger.error({ error }, 'Got timeout when trying to fetch list of all soundboards and sound-effects.');
+      } else {
+        this.logger.error({ error }, 'Got unexpected exception when trying to fetch list of all soundboards and sound-effects.');
+      }
       throw error;
     }
   }
@@ -70,7 +73,7 @@ class SoundboardService {
       // Log information and try to send request
       this.logger.info(`Requesting to play sound-effect with id: ${id}`);
       const json = await ky
-        .put(`${this.config.getArgument('url')}/v1/soundboard/play`, { json: { id }})
+        .put(`${this.config.getArgument('url')}/v1/soundboard/play`, { json: { id } })
         .json<KenkuId>();
 
       // Log information and pass response
@@ -78,9 +81,13 @@ class SoundboardService {
       return json;
     } catch (error) {
       // Ensure that errors are seen, but also are passed down
-      if (error instanceof HTTPError) { this.logger.error({ error }, `Got exception when trying to play sound-effect: ${error.message}`); }
-      else if (error instanceof TimeoutError) { this.logger.error({ error }, 'Got timeout when trying to play sound-effect.'); }
-      else {  this.logger.error({ error }, `Got unexpected exception when trying to play sound-effect.`); }
+      if (error instanceof HTTPError) {
+        this.logger.error({ error }, `Got exception when trying to play sound-effect: ${error.message}`);
+      } else if (error instanceof TimeoutError) {
+        this.logger.error({ error }, 'Got timeout when trying to play sound-effect.');
+      } else {
+        this.logger.error({ error }, 'Got unexpected exception when trying to play sound-effect.');
+      }
       throw error;
     }
   }
@@ -98,7 +105,7 @@ class SoundboardService {
       // Log information and try to send request
       this.logger.info(`Requesting to stop sound-effect with id: ${id}`);
       const json = await ky
-        .put(`${this.config.getArgument('url')}/v1/soundboard/stop`, { json: { id }})
+        .put(`${this.config.getArgument('url')}/v1/soundboard/stop`, { json: { id } })
         .json<KenkuId>();
 
       // Log information and pass response
@@ -106,9 +113,13 @@ class SoundboardService {
       return json;
     } catch (error) {
       // Ensure that errors are seen, but also are passed down
-      if (error instanceof HTTPError) { this.logger.error({ error }, `Got exception when trying to stop sound-effect: ${error.message}`); }
-      else if (error instanceof TimeoutError) { this.logger.error({ error }, 'Got timeout when trying to stop sound-effect.'); }
-      else {  this.logger.error({ error }, `Got unexpected exception when trying to stop sound-effect.`); }
+      if (error instanceof HTTPError) {
+        this.logger.error({ error }, `Got exception when trying to stop sound-effect: ${error.message}`);
+      } else if (error instanceof TimeoutError) {
+        this.logger.error({ error }, 'Got timeout when trying to stop sound-effect.');
+      } else {
+        this.logger.error({ error }, 'Got unexpected exception when trying to stop sound-effect.');
+      }
       throw error;
     }
   }
@@ -133,9 +144,13 @@ class SoundboardService {
       return json;
     } catch (error) {
       // Ensure that errors are seen, but also are passed down
-      if (error instanceof HTTPError) { this.logger.error({ error }, `Got exception when trying to fetch soundboard state: ${error.message}`); }
-      else if (error instanceof TimeoutError) { this.logger.error({ error }, 'Got timeout when trying  fetch soundboard state.'); }
-      else {  this.logger.error({ error }, `Got unexpected exception when trying to fetch soundboard state.`); }
+      if (error instanceof HTTPError) {
+        this.logger.error({ error }, `Got exception when trying to fetch soundboard state: ${error.message}`);
+      } else if (error instanceof TimeoutError) {
+        this.logger.error({ error }, 'Got timeout when trying  fetch soundboard state.');
+      } else {
+        this.logger.error({ error }, 'Got unexpected exception when trying to fetch soundboard state.');
+      }
       throw error;
     }
   }
@@ -144,4 +159,4 @@ class SoundboardService {
 // Export content as module
 export {
   SoundboardService,
-}
+};

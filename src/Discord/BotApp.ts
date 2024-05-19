@@ -53,7 +53,7 @@ class BotApp {
   public async registerCommands(): Promise<void> {
     this.logger.info('Setting up discord application slash-commands...');
 
-    const rest = new REST()
+    const rest = new REST();
     rest.setToken(this.config.getArgument('token'));
 
     try {
@@ -109,4 +109,4 @@ class BotApp {
 // Export content as module
 export {
   BotApp,
-}
+};

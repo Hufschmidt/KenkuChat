@@ -1,6 +1,5 @@
 // Import code from external modules
-import { HTTPError, TimeoutError } from 'ky';
-import ky from 'ky';
+import ky, { HTTPError, TimeoutError } from 'ky';
 
 // Import code from internal modules
 import { Config } from '../Config/Config.js';
@@ -50,9 +49,13 @@ class PlaylistService {
       return json;
     } catch (error) {
       // Ensure that errors are seen, but also are passed down
-      if (error instanceof HTTPError) { this.logger.error({ error }, `Got exception when trying to fetch list of all playlists and tracks: ${error.message}`); }
-      else if (error instanceof TimeoutError) { this.logger.error({ error }, 'Got timeout when trying to fetch list of all playlists and tracks.'); }
-      else {  this.logger.error({ error }, `Got unexpected exception when trying to fetch list of all playlists and tracks.`); }
+      if (error instanceof HTTPError) {
+        this.logger.error({ error }, `Got exception when trying to fetch list of all playlists and tracks: ${error.message}`);
+      } else if (error instanceof TimeoutError) {
+        this.logger.error({ error }, 'Got timeout when trying to fetch list of all playlists and tracks.');
+      } else {
+        this.logger.error({ error }, 'Got unexpected exception when trying to fetch list of all playlists and tracks.');
+      }
       throw error;
     }
   }
@@ -70,7 +73,7 @@ class PlaylistService {
       // Log information and try to send request
       this.logger.info(`Requesting to play playlist or track with id: ${id}`);
       const json = await ky
-        .put(`${this.config.getArgument('url')}/v1/playlist/play`, { json: { id }})
+        .put(`${this.config.getArgument('url')}/v1/playlist/play`, { json: { id } })
         .json<KenkuId>();
 
       // Log information and pass response
@@ -78,9 +81,13 @@ class PlaylistService {
       return json;
     } catch (error) {
       // Ensure that errors are seen, but also are passed down
-      if (error instanceof HTTPError) { this.logger.error({ error }, `Got exception when trying to play playlist or track: ${error.message}`); }
-      else if (error instanceof TimeoutError) { this.logger.error({ error }, 'Got timeout when trying to play playlist or track.'); }
-      else {  this.logger.error({ error }, `Got unexpected exception when trying to play playlist or track.`); }
+      if (error instanceof HTTPError) {
+        this.logger.error({ error }, `Got exception when trying to play playlist or track: ${error.message}`);
+      } else if (error instanceof TimeoutError) {
+        this.logger.error({ error }, 'Got timeout when trying to play playlist or track.');
+      } else {
+        this.logger.error({ error }, 'Got unexpected exception when trying to play playlist or track.');
+      }
       throw error;
     }
   }
@@ -101,9 +108,13 @@ class PlaylistService {
       this.logger.debug('Got playlist or track pause answer.');
     } catch (error) {
       // Ensure that errors are seen, but also are passed down
-      if (error instanceof HTTPError) { this.logger.error({ error }, `Got exception when trying to pause playlist or track: ${error.message}`); }
-      else if (error instanceof TimeoutError) { this.logger.error({ error }, 'Got timeout when trying to pause playlist or track.'); }
-      else {  this.logger.error({ error }, `Got unexpected exception when trying to pause playlist or track.`); }
+      if (error instanceof HTTPError) {
+        this.logger.error({ error }, `Got exception when trying to pause playlist or track: ${error.message}`);
+      } else if (error instanceof TimeoutError) {
+        this.logger.error({ error }, 'Got timeout when trying to pause playlist or track.');
+      } else {
+        this.logger.error({ error }, 'Got unexpected exception when trying to pause playlist or track.');
+      }
       throw error;
     }
   }
@@ -124,9 +135,13 @@ class PlaylistService {
       this.logger.debug('Got playlist or track resume answer.');
     } catch (error) {
       // Ensure that errors are seen, but also are passed down
-      if (error instanceof HTTPError) { this.logger.error({ error }, `Got exception when trying to resume playlist or track: ${error.message}`); }
-      else if (error instanceof TimeoutError) { this.logger.error({ error }, 'Got timeout when trying to resume playlist or track.'); }
-      else {  this.logger.error({ error }, `Got unexpected exception when trying to resume playlist or track.`); }
+      if (error instanceof HTTPError) {
+        this.logger.error({ error }, `Got exception when trying to resume playlist or track: ${error.message}`);
+      } else if (error instanceof TimeoutError) {
+        this.logger.error({ error }, 'Got timeout when trying to resume playlist or track.');
+      } else {
+        this.logger.error({ error }, 'Got unexpected exception when trying to resume playlist or track.');
+      }
       throw error;
     }
   }
@@ -147,9 +162,13 @@ class PlaylistService {
       this.logger.debug('Got next track answer.');
     } catch (error) {
       // Ensure that errors are seen, but also are passed down
-      if (error instanceof HTTPError) { this.logger.error({ error }, `Got exception when trying to play next track in playlist: ${error.message}`); }
-      else if (error instanceof TimeoutError) { this.logger.error({ error }, 'Got timeout when trying to play next track in playlist.'); }
-      else {  this.logger.error({ error }, `Got unexpected exception when trying to play next track in playlist.`); }
+      if (error instanceof HTTPError) {
+        this.logger.error({ error }, `Got exception when trying to play next track in playlist: ${error.message}`);
+      } else if (error instanceof TimeoutError) {
+        this.logger.error({ error }, 'Got timeout when trying to play next track in playlist.');
+      } else {
+        this.logger.error({ error }, 'Got unexpected exception when trying to play next track in playlist.');
+      }
       throw error;
     }
   }
@@ -170,9 +189,13 @@ class PlaylistService {
       this.logger.debug('Got previous track answer.');
     } catch (error) {
       // Ensure that errors are seen, but also are passed down
-      if (error instanceof HTTPError) { this.logger.error({ error }, `Got exception when trying to play previous track in playlist: ${error.message}`); }
-      else if (error instanceof TimeoutError) { this.logger.error({ error }, 'Got timeout when trying to play previous track in playlist.'); }
-      else {  this.logger.error({ error }, `Got unexpected exception when trying to play previous track in playlist.`); }
+      if (error instanceof HTTPError) {
+        this.logger.error({ error }, `Got exception when trying to play previous track in playlist: ${error.message}`);
+      } else if (error instanceof TimeoutError) {
+        this.logger.error({ error }, 'Got timeout when trying to play previous track in playlist.');
+      } else {
+        this.logger.error({ error }, 'Got unexpected exception when trying to play previous track in playlist.');
+      }
       throw error;
     }
   }
@@ -197,9 +220,13 @@ class PlaylistService {
       return json;
     } catch (error) {
       // Ensure that errors are seen, but also are passed down
-      if (error instanceof HTTPError) { this.logger.error({ error }, `Got exception when trying to fetch playlist state: ${error.message}`); }
-      else if (error instanceof TimeoutError) { this.logger.error({ error }, 'Got timeout when trying  fetch playlist state.'); }
-      else {  this.logger.error({ error }, `Got unexpected exception when trying to fetch playlist state.`); }
+      if (error instanceof HTTPError) {
+        this.logger.error({ error }, `Got exception when trying to fetch playlist state: ${error.message}`);
+      } else if (error instanceof TimeoutError) {
+        this.logger.error({ error }, 'Got timeout when trying  fetch playlist state.');
+      } else {
+        this.logger.error({ error }, 'Got unexpected exception when trying to fetch playlist state.');
+      }
       throw error;
     }
   }
@@ -208,4 +235,4 @@ class PlaylistService {
 // Export content as module
 export {
   PlaylistService,
-}
+};

@@ -116,7 +116,7 @@ class Config {
   /**
    * Executes the argument and command parsing logic and
    * returns the value of the requested argument.
-   * @typeparam T Generic used together with auto-type deduction to set correct return-type based on key-value
+   * @typeparam K Generic used together with auto-type deduction to set correct return-type based on key-value
    * @param key The argument whose value should be returned
    * @returns Value of requested argument
    */
@@ -137,4 +137,4 @@ class Config {
 // Export content as module
 export {
   Config,
-}
+};

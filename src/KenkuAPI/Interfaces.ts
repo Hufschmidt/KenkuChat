@@ -99,4 +99,4 @@ export {
   type KenkuGetPlaylists,
   type KenkuGetTrackState,
   type KenkuId,
-}
+};

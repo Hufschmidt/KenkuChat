@@ -90,11 +90,17 @@ class StatusCommand implements SlashCommandInterface {
       // Output status information
       await interaction.editReply(`Currently playing following:\n${trackInfo}\n${soundInfo}`);
     } catch (error) {
-      // Inform discord about error
+      // Log error to console
       this.logger.error({ error }, `Got unexpected exception when executing command in ${this.constructor.name}.`);
-      if (error instanceof HTTPError) { await interaction.editReply('**Error**: KenkuFM remote-control API triggered an HTTP exception, see KenkuChat logs!'); }
-      else if (error instanceof TimeoutError) { await interaction.editReply('**Error**: KenkuFM remote-control API timed out!'); }
-      else { await interaction.editReply('**Error**: Caught an unknown exception, see KenkuChat logs!'); }
+
+      // Send information to discord
+      if (error instanceof HTTPError) {
+        await interaction.editReply('**Error**: KenkuFM remote-control API triggered an HTTP exception, see KenkuChat logs!');
+      } else if (error instanceof TimeoutError) {
+        await interaction.editReply('**Error**: KenkuFM remote-control API timed out!');
+      } else {
+        await interaction.editReply('**Error**: Caught an unknown exception, see KenkuChat logs!');
+      }
     }
   }
 }
@@ -102,4 +108,4 @@ class StatusCommand implements SlashCommandInterface {
 // Export content as module
 export {
   StatusCommand,
-}
+};

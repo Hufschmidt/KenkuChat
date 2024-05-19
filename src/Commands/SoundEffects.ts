@@ -51,7 +51,7 @@ class SoundEffectsCommand implements SlashCommandInterface {
             return option
               .setName('title')
               .setDescription('The title or unique-identifier of the soundboard or sound-effect to play.');
-        });
+          });
       })
       .addSubcommand((subcommand) => {
         return subcommand
@@ -61,7 +61,7 @@ class SoundEffectsCommand implements SlashCommandInterface {
             return option
               .setName('title')
               .setDescription('The title or unique-identifier of the soundboard or sound-effect to stop.');
-        });
+          });
       })
       .addSubcommand((subcommand) => {
         return subcommand
@@ -87,7 +87,7 @@ class SoundEffectsCommand implements SlashCommandInterface {
     await interaction.deferReply();
 
     // WIP
-    console.log(interaction);
+    this.logger.info(interaction);
     await interaction.editReply('This is Work-In-Progress!');
   }
 }
@@ -95,4 +95,4 @@ class SoundEffectsCommand implements SlashCommandInterface {
 // Export content as module
 export {
   SoundEffectsCommand,
-}
+};
