@@ -17,8 +17,7 @@ This software is written in [Typescript](https://www.typescriptlang.org) and tra
 
 ## Running ##
 
-Ensure that the project has been [build](#development) first,
-afterwards the script can be started with:
+Ensure that the project has been [build](#development) first, afterwards the discord bot can be started with:
 
 ```bash
 npm run start
