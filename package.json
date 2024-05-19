@@ -2,14 +2,14 @@
   "name": "kenkuchat",
   "version": "0.1.0",
   "description": "Control KenkuFM using discord chat commands via custom bot.",
-  "main": "dist/src/index.js",
+  "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
     "doc": "typedoc ./src/",
     "lint": "npm run lint-ts; npm run lint-md",
     "lint-ts": "eslint src --ext ts",
     "lint-md": "remark --quiet --no-stdout --frail .",
-    "start": "node ./dist/src/",
+    "start": "node ./dist/",
     "start-debug": "node --inspect ./dist/"
   },
   "type": "module",
