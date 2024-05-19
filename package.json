@@ -32,6 +32,10 @@
   "homepage": "https://github.com/Hufschmidt/KenkuChat#readme",
   "dependencies": {
     "discord.js": "^14.15.2",
+    "fuse.js": "^7.0.0",
+    "ky": "^1.2.4",
+    "pino": "^9.1.0",
+    "pino-pretty": "^11.0.0",
     "yargs": "^17.7.2"
   },
   "devDependencies": {
