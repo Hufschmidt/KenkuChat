@@ -28,6 +28,8 @@ class Config {
 
     // Basic CLI parser configuration
     this.parser
+      .scriptName('npm run start')
+      .usage('npm run start [-- <Arguments>]')
       .wrap(this.parser.terminalWidth())
       .locale('en');
 
@@ -91,7 +93,7 @@ class Config {
 
     // Add --server-id argument
     this.parser.option('serverId', {
-      describe: 'The (optional) server identifier when updating slash-commans on a single server only.',
+      describe: 'The (optional) server identifier when updating slash-commands on a single server only.',
       nargs: 1,
       type: 'string',
       demandOption: true,
