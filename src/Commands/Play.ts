@@ -32,6 +32,7 @@ class PlayCommand implements SlashCommandInterface {
    * initializes all required references.
    */
   public constructor() {
+    // Store references
     this.config = new Config();
     this.logger = LoggerFactory(this.constructor.name);
     this.playlist = new PlaylistService();
@@ -50,7 +51,8 @@ class PlayCommand implements SlashCommandInterface {
       .addStringOption((option) => {
         return option
           .setName('title')
-          .setDescription('The title or unique identifier of the playlists, tracks, soundboards or sound-effects to play.');
+          .setDescription('The title or unique identifier of the playlists, tracks, soundboards or sound-effects to play.')
+          .setRequired(true);
       });
   }
 

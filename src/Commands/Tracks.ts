@@ -29,6 +29,7 @@ class TracksCommand implements SlashCommandInterface {
    * initializes all required references.
    */
   public constructor() {
+    // Store references
     this.config = new Config();
     this.logger = LoggerFactory(this.constructor.name);
     this.playlist = new PlaylistService();
@@ -50,7 +51,8 @@ class TracksCommand implements SlashCommandInterface {
           .addUserOption((option) => {
             return option
               .setName('title')
-              .setDescription('The title or unique-identifier of the playlist or track to play');
+              .setDescription('The title or unique-identifier of the playlist or track to play')
+              .setRequired(true);
           });
       })
       .addSubcommand((subcommand) => {

@@ -41,6 +41,7 @@ class StatusCommand implements SlashCommandInterface {
    * initializes all required references.
    */
   public constructor() {
+    // Store references
     this.config = new Config();
     this.logger = LoggerFactory(this.constructor.name);
     this.playlist = new PlaylistService();
@@ -98,7 +99,7 @@ class StatusCommand implements SlashCommandInterface {
 
       // Send information to discord
       if (KenkuError.isUnavailableException(error) || KenkuError.isTimeout(error)) {
-        await interaction.editReply('**Warning**: Cannot talk to KenkuFM remote-control api, see KenkuChat logs!');
+        await interaction.editReply('**Warning**: Cannot talk to KenkuFM remote-control api!');
       } else {
         await interaction.editReply('**Error**: Caught an unknown exception, see KenkuChat logs!');
       }

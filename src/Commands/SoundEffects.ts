@@ -29,6 +29,7 @@ class SoundEffectsCommand implements SlashCommandInterface {
    * initializes all required references.
    */
   public constructor() {
+    // Store references
     this.config = new Config();
     this.logger = LoggerFactory(this.constructor.name);
     this.soundboard = new SoundboardService();
@@ -50,7 +51,8 @@ class SoundEffectsCommand implements SlashCommandInterface {
           .addUserOption((option) => {
             return option
               .setName('title')
-              .setDescription('The title or unique-identifier of the soundboard or sound-effect to play.');
+              .setDescription('The title or unique-identifier of the soundboard or sound-effect to play.')
+              .setRequired(true);
           });
       })
       .addSubcommand((subcommand) => {
@@ -60,7 +62,8 @@ class SoundEffectsCommand implements SlashCommandInterface {
           .addUserOption((option) => {
             return option
               .setName('title')
-              .setDescription('The title or unique-identifier of the soundboard or sound-effect to stop.');
+              .setDescription('The title or unique-identifier of the soundboard or sound-effect to stop.')
+              .setRequired(true);
           });
       })
       .addSubcommand((subcommand) => {

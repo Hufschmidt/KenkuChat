@@ -26,6 +26,7 @@ class PlaylistService {
    * initializes all required references.
    */
   public constructor() {
+    // Store references
     this.config = new Config();
     this.logger = LoggerFactory(this.constructor.name);
   }

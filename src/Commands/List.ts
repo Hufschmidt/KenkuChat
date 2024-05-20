@@ -32,6 +32,7 @@ class ListCommand implements SlashCommandInterface {
    * initializes all required references.
    */
   public constructor() {
+    // Store references
     this.config = new Config();
     this.logger = LoggerFactory(this.constructor.name);
     this.playlist = new PlaylistService();
@@ -64,7 +65,8 @@ class ListCommand implements SlashCommandInterface {
           .addUserOption((option) => {
             return option
               .setName('title')
-              .setDescription('The title or unique-identifier of the playlist to show tracks for.');
+              .setDescription('The title or unique-identifier of the playlist to show tracks for.')
+              .setRequired(true);
           });
       })
       .addSubcommand((subcommand) => {
@@ -74,7 +76,8 @@ class ListCommand implements SlashCommandInterface {
           .addUserOption((option) => {
             return option
               .setName('title')
-              .setDescription('The title or unique-identifier of the soundboard to show sound-effects for.');
+              .setDescription('The title or unique-identifier of the soundboard to show sound-effects for.')
+              .setRequired(true);
           });
       });
   }

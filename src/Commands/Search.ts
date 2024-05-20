@@ -32,6 +32,7 @@ class SearchCommand implements SlashCommandInterface {
    * initializes all required references.
    */
   public constructor() {
+    // Store references
     this.config = new Config();
     this.logger = LoggerFactory(this.constructor.name);
     this.playlist = new PlaylistService();
@@ -50,7 +51,8 @@ class SearchCommand implements SlashCommandInterface {
       .addStringOption((option) => {
         return option
           .setName('title')
-          .setDescription('The title to search for.');
+          .setDescription('The title to search for.')
+          .setRequired(true);
       });
   }
 
